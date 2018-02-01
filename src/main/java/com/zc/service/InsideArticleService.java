@@ -30,8 +30,8 @@ public class InsideArticleService {
 
         List<InsideArticle> all = insideArticleMapper.findAll(commonPage, insideArticle);
 
-        map.put("list", commonPage);
-        map.put("data", all);
+        map.put("page", commonPage);
+        map.put("list", all);
 
         if (all.size() == 0) {
             return CommonResult.isNull(map);

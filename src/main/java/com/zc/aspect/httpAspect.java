@@ -43,10 +43,10 @@ public class httpAspect {
         logger.info("请求ip:{}", request.getRemoteAddr());
 
         // 类方法
-        logger.info("调用方法={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        logger.info("调用方法:{}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
 
         // params
-        logger.info("参数={}", joinPoint.getArgs());
+        logger.info("参数:{}", joinPoint.getArgs());
     }
 
     /*
