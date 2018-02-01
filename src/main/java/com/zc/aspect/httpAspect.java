@@ -18,7 +18,7 @@ import java.util.Date;
 @Component
 public class httpAspect {
 
-    private final static Logger logger = LoggerFactory.getLogger(httpAspect.class);
+    private final Logger logger = LoggerFactory.getLogger(httpAspect.class);
 
     @Pointcut("execution(public * com.zc.controller.*.*(..))")
     public void log() {

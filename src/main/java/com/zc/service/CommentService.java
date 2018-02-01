@@ -7,6 +7,7 @@ import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,37 @@ public class CommentService {
             return CommonResult.isNull(map);
         } else {
             return CommonResult.success(map);
+        }
+    }
+
+    /*
+    * 新增一条评论
+    * @params comment
+    * */
+    public CommonResult addOne(Comment comment) {
+
+        if (comment.getArticleId() == null || comment.getCommentContent() == null || comment.getCommentEmail() == null) {
+            return CommonResult.paramsError("");
+        } else {
+            comment.setCreateTime(new Date());
+
+            commentMapper.addOne(comment);
+
+            return CommonResult.success(comment);
+        }
+    }
+
+    /*
+    * 删除一条评论
+    * @params comment
+    * */
+    public CommonResult deleteOne(Comment comment) {
+        if (comment.getId() == null) {
+            return  CommonResult.paramsError("");
+        } else {
+            commentMapper.deleteOne(comment);
+
+            return CommonResult.success("");
         }
     }
 }

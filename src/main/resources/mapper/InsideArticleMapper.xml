@@ -36,4 +36,13 @@
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM inside_article <include refid="search" />;
     </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.InsideArticle">
+        INSERT INTO inside_article (article_title, article_author, article_like_count, visit_count, article_content, remark, create_time, article_type_id)
+        VALUES (#{articleTitle}, #{articleAuthor}, #{articleLikeCount}, #{visitCount}, #{articleContent}, #{remark}, #{createTime}, #{articleTypeId});
+    </insert>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.InsideArticle">
+        DELETE FROM inside_article WHERE id = #{id};
+    </delete>
 </mapper>

@@ -51,4 +51,24 @@ public class InsideArticleController {
 
         return insideArticleService.getInsideArticle(commonPage, insideArticle);
     }
+
+    /*
+    * 新增一个内部文章
+    * @params insideArticle
+    * */
+    @PostMapping(value = "/addOne")
+    public CommonResult addOne(InsideArticle insideArticle) {
+
+        return insideArticleService.addOne(insideArticle);
+    }
+
+    /*
+    * 删除一个内部文章
+    * @params insideArticle
+    * */
+    @GetMapping(value = "/deleteOne")
+    public CommonResult deleteOne(InsideArticle insideArticle) {
+
+        return insideArticleService.deleteOne(insideArticle);
+    }
 }

@@ -72,4 +72,13 @@ public class CommonResult<T> {
 
         return commonResult;
     }
+
+    public static CommonResult paramsError(Object object) {
+        CommonResult commonResult = new CommonResult();
+        commonResult.setCode(CommonEnums.PARAMS.getCode());
+        commonResult.setMsg(CommonEnums.PARAMS.getMsg());
+        commonResult.setData(object);
+
+        return  commonResult;
+    }
 }

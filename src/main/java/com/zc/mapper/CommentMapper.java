@@ -25,4 +25,16 @@ public interface CommentMapper {
     * @params comment
     * */
     public Integer countAll(@Param("comment") Comment comment);
+
+    /*
+    * 新增一条评论
+    * @params comment
+    * */
+    public void addOne(Comment comment);
+
+    /*
+    * 删除一条评论
+    * @params comment
+    * */
+    public void deleteOne(Comment comment);
 }

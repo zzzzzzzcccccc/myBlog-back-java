@@ -25,4 +25,16 @@ public interface InsideArticleMapper {
     * @params insideArticle
     * */
     public Integer countAll(@Param("insideArticle") InsideArticle insideArticle);
+
+    /*
+    * 新增一个内部文章
+    * @params insideArticle
+    * */
+    public void addOne(InsideArticle insideArticle);
+
+    /*
+    * 删除一个内部文章
+    * @params insideArticle
+    * */
+    public void deleteOne(InsideArticle insideArticle);
 }
