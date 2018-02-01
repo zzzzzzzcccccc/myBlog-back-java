@@ -5,6 +5,29 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://zouchenwd.cn/myBlog?characterEncoding=utf-8
+    username: root
+    password: 789456
+    druid:
+      initial-size: 1
+      min-idle: 3
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,sjf4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 mybatis:
   type-aliases-package: com.zc.domain
   mapper-locations: classpath:mapper/*.xml
+
+
+

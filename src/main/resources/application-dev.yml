@@ -1,9 +1,2 @@
 server:
   port: 8080
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://zouchenwd.cn/myBlog?characterEncoding=utf-8
-    username: root
-    password: 789456
-
