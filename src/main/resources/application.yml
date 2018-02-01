@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+mybatis:
+  type-aliases-package: com.zc.domain
+  mapper-locations: classpath:mapper/*.xml
