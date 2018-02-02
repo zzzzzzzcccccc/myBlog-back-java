@@ -33,6 +33,12 @@ public interface InsideArticleMapper {
     public void addOne(InsideArticle insideArticle);
 
     /*
+    * 更新一个内部文章
+    * @params insideArticle
+    * */
+    public void updateOne(InsideArticle insideArticle);
+
+    /*
     * 删除一个内部文章
     * @params insideArticle
     * */

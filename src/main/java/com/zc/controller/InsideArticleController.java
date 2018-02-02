@@ -63,6 +63,16 @@ public class InsideArticleController {
     }
 
     /*
+    * 编辑一个内部文章
+    * @params insideArticle
+    * */
+    @PostMapping(value = "/updateOne")
+    public CommonResult updateOne(InsideArticle insideArticle) {
+
+        return insideArticleService.updateOne(insideArticle);
+    }
+
+    /*
     * 删除一个内部文章
     * @params insideArticle
     * */

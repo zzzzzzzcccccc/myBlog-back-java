@@ -58,6 +58,22 @@ public class InsideArticleService {
     }
 
     /*
+    * 编辑一个内部文章
+    * @params insideArticle
+    * */
+    public CommonResult updateOne(InsideArticle insideArticle) {
+        if (insideArticle.getId() == null || insideArticle.getArticleTypeId() == null || insideArticle.getArticleContent() == null || insideArticle.getArticleAuthor() == null) {
+            return CommonResult.paramsError("");
+        } else {
+            insideArticle.setUpdateTime(new Date());
+
+            insideArticleMapper.updateOne(insideArticle);
+
+            return CommonResult.success(insideArticle);
+        }
+    }
+
+    /*
     * 删除一片内部文章
     * @params insideArticle
     * */
