@@ -46,7 +46,7 @@ public class InsideArticleController {
     * @params commonPage
     * @params insideArticle
     * */
-    @PostMapping(value = "/articleList")
+    @PostMapping(value = "/list")
     public CommonResult getInsideArticle(CommonPage commonPage, InsideArticle insideArticle) {
 
         return insideArticleService.getInsideArticle(commonPage, insideArticle);

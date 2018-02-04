@@ -14,9 +14,9 @@ public class GlobalNavService {
     private GlobalNavMapper globalNavMapper;
 
     /*
-    * 查询所有的首页导航栏李列表
+    * 查询所有的首页导航栏列表
     * */
-    public List<GlobalNav> getAllGlobalNav() {
+    public List<GlobalNav> getGlobalNavList() {
 
         return globalNavMapper.findAll();
     }
