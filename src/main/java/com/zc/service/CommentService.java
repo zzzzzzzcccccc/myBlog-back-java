@@ -51,7 +51,6 @@ public class CommentService {
             return CommonResult.paramsError("");
         } else {
             comment.setCreateTime(new Date());
-
             commentMapper.addOne(comment);
 
             return CommonResult.success(comment);

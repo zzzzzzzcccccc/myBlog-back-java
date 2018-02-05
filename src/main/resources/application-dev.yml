@@ -1,2 +1,15 @@
 server:
   port: 8080
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://zouchenwd.cn/myBlog?characterEncoding=utf-8
+    username: root
+    password: 789456
+commonConfig:
+  commonUploadFilePath: http://localhost:8080/
+  uploadPath: /Users/zouchen/work/javaProject/myBlog/src/main/resources/static/

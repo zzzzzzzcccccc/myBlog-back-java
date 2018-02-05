@@ -50,7 +50,6 @@ public class InsideArticleService {
             return CommonResult.paramsError("");
         } else {
             insideArticle.setCreateTime(new Date());
-
             insideArticleMapper.addOne(insideArticle);
 
             return CommonResult.success(insideArticle);
@@ -66,7 +65,6 @@ public class InsideArticleService {
             return CommonResult.paramsError("");
         } else {
             insideArticle.setUpdateTime(new Date());
-
             insideArticleMapper.updateOne(insideArticle);
 
             return CommonResult.success(insideArticle);

@@ -35,7 +35,7 @@
         SELECT COUNT(*) FROM comment <include refid="search"></include>;
     </select>
 
-    <insert id="addOne" parameterType="com.zc.domain.Comment">
+    <insert id="addOne" parameterType="com.zc.domain.Comment" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO comment (comment_name, comment_content, comment_email, comment_like_count, create_time, article_id)
         VALUES (#{commentName}, #{commentContent}, #{commentEmail}, #{commentLikeCount}, #{createTime}, #{articleId});
     </insert>

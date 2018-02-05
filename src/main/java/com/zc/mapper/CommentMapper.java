@@ -32,6 +32,7 @@ public interface CommentMapper {
     * */
     public void addOne(Comment comment);
 
+
     /*
     * 删除一条评论
     * @params comment
