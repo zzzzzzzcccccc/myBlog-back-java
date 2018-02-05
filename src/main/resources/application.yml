@@ -24,6 +24,8 @@ spring:
 mybatis:
   type-aliases-package: com.zc.domain
   mapper-locations: classpath:mapper/*.xml
+logging:
+  config: classpath:log4j2.xml
 
 
 

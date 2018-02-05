@@ -2,8 +2,8 @@ package com.zc.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -18,7 +18,7 @@ import java.util.Date;
 @Component
 public class httpAspect {
 
-    private final Logger logger = LoggerFactory.getLogger(httpAspect.class);
+    private final Logger logger = LogManager.getLogger(httpAspect.class);
 
     @Pointcut("execution(public * com.zc.controller.*.*(..))")
     public void log() {
@@ -34,19 +34,24 @@ public class httpAspect {
         HttpServletRequest request = attributes.getRequest();
 
         // url
-        logger.info("请求url:{}", request.getRequestURL());
+        // logger.info("请求url:{}", request.getRequestURL());
+        logger.info("请求url:" + request.getRequestURL());
 
         // method
-        logger.info("请求方式:{}", request.getMethod());
+        // logger.info("请求方式:{}", request.getMethod());
+        logger.info("请求方式:" + request.getMethod());
 
         // ip
-        logger.info("请求ip:{}", request.getRemoteAddr());
+        // logger.info("请求ip:{}", request.getRemoteAddr());
+        logger.info("请求ip:" + request.getRemoteAddr());
 
         // 类方法
-        logger.info("调用方法:{}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        // logger.info("调用方法:{}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        logger.info("调用方法:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
 
         // params
-        logger.info("参数:{}", joinPoint.getArgs());
+        // logger.info("参数:{}", joinPoint.getArgs());
+        logger.info("参数:" + joinPoint.getArgs());
     }
 
     /*
@@ -54,7 +59,8 @@ public class httpAspect {
     * */
     @After("log()")
     public void doAfter() {
-        logger.info("http请求完毕={}", new Date().getTime());
+        // logger.info("http请求完毕={}", new Date().getTime());
+        logger.info("http请求完毕:" + new Date().getTime());
     }
 
     /*
