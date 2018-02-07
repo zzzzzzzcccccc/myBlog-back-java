@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <properties>
+        <property name="LOG_HOME">/Users/zouchen/work/javaProject/myBlog/src/logs/</property>
+        <property name="LOG_FILE_NAME">myBlog</property>
+        <property name="LOG_OUT_FORMAT">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_OUT_FORMAT}" />
+        </Console>
+
+        <File name="File" fileName="${LOG_HOME}${LOG_FILE_NAME}.log">
+            <PatternLayout patter="${LOG_OUT_FORMAT}" />
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="File" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

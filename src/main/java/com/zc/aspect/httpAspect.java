@@ -1,9 +1,8 @@
 package com.zc.aspect;
 
+import com.zc.utils.CommonLogger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -17,8 +16,6 @@ import java.util.Date;
 @Aspect
 @Component
 public class httpAspect {
-
-    private final Logger logger = LogManager.getLogger(httpAspect.class);
 
     @Pointcut("execution(public * com.zc.controller.*.*(..))")
     public void log() {
@@ -35,23 +32,23 @@ public class httpAspect {
 
         // url
         // logger.info("请求url:{}", request.getRequestURL());
-        logger.info("请求url:" + request.getRequestURL());
+        CommonLogger.info("请求url:" + request.getRequestURL());
 
         // method
         // logger.info("请求方式:{}", request.getMethod());
-        logger.info("请求方式:" + request.getMethod());
+        CommonLogger.info("请求方式:" + request.getMethod());
 
         // ip
         // logger.info("请求ip:{}", request.getRemoteAddr());
-        logger.info("请求ip:" + request.getRemoteAddr());
+        CommonLogger.info("请求ip:" + request.getRemoteAddr());
 
         // 类方法
         // logger.info("调用方法:{}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.info("调用方法:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        CommonLogger.info("调用方法:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
 
         // params
         // logger.info("参数:{}", joinPoint.getArgs());
-        logger.info("参数:" + joinPoint.getArgs());
+        CommonLogger.info("参数:" + joinPoint.getArgs());
     }
 
     /*
@@ -60,7 +57,7 @@ public class httpAspect {
     @After("log()")
     public void doAfter() {
         // logger.info("http请求完毕={}", new Date().getTime());
-        logger.info("http请求完毕:" + new Date().getTime());
+        CommonLogger.info("http请求完毕:" + new Date().getTime());
     }
 
     /*

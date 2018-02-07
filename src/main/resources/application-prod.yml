@@ -13,3 +13,5 @@ spring:
 commonConfig:
   commonUploadFilePath: https://zouchenwd.cn/
   uploadPath: /Users/zouchen/work/javaProject/myBlog/src/main/resources/static/
+logging:
+  config: classpath:log4j2-prod.xml

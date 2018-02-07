@@ -1,0 +1,64 @@
+Starting MyBlogApplication on zc.local with PID 1461 (/Users/zouchen/work/javaProject/myBlog/target/classes started by zouchen in /Users/zouchen/work/javaProject/myBlog)
+The following profiles are active: dev
+Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4dbb42b7: startup date [Wed Feb 07 16:13:44 CST 2018]; root of context hierarchy
+HV000001: Hibernate Validator 5.3.6.Final
+Tomcat initialized with port(s): 8080 (http)
+Starting service [Tomcat]
+Starting Servlet Engine: Apache Tomcat/8.5.23
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 1154 ms
+Mapping servlet: 'dispatcherServlet' to [/]
+Mapping servlet: 'statViewServlet' to [/druid/*]
+Mapping filter: 'characterEncodingFilter' to: [/*]
+Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+Mapping filter: 'httpPutFormContentFilter' to: [/*]
+Mapping filter: 'requestContextFilter' to: [/*]
+Mapping filter: 'webStatFilter' to urls: [/*]
+load filter error, filter not found : sjf4j
+{dataSource-1} inited
+Building JPA container EntityManagerFactory for persistence unit 'default'
+HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+HHH000412: Hibernate Core {5.0.12.Final}
+HHH000206: hibernate.properties not found
+HHH000021: Bytecode provider name : javassist
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+HHH000228: Running hbm2ddl schema update
+Initialized JPA EntityManagerFactory for persistence unit 'default'
+Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4dbb42b7: startup date [Wed Feb 07 16:13:44 CST 2018]; root of context hierarchy
+Mapped "{[/comment/list],methods=[POST]}" onto public com.zc.utils.CommonResult com.zc.controller.CommentController.getCommentList(com.zc.utils.CommonPage,com.zc.domain.Comment)
+Mapped "{[/comment/deleteOne],methods=[GET]}" onto public com.zc.utils.CommonResult com.zc.controller.CommentController.deleteOne(com.zc.domain.Comment)
+Mapped "{[/comment/addOne],methods=[POST]}" onto public com.zc.utils.CommonResult com.zc.controller.CommentController.addOne(com.zc.domain.Comment)
+Mapped "{[/upload/file],methods=[POST]}" onto public com.zc.utils.CommonResult com.zc.controller.GetUploadFileController.getFile(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest)
+Mapped "{[/index/list],methods=[GET]}" onto public com.zc.utils.CommonResult com.zc.controller.IndexController.getGlobalList()
+Mapped "{[/inside/article/deleteOne],methods=[GET]}" onto public com.zc.utils.CommonResult com.zc.controller.InsideArticleController.deleteOne(com.zc.domain.InsideArticle)
+Mapped "{[/inside/article/type],methods=[GET]}" onto public com.zc.utils.CommonResult com.zc.controller.InsideArticleController.getArticleTypeList()
+Mapped "{[/inside/article/type/getOne],methods=[GET]}" onto public com.zc.utils.CommonResult com.zc.controller.InsideArticleController.getArticleTypeOne(javax.servlet.http.HttpServletRequest)
+Mapped "{[/inside/article/list],methods=[POST]}" onto public com.zc.utils.CommonResult com.zc.controller.InsideArticleController.getInsideArticle(com.zc.utils.CommonPage,com.zc.domain.InsideArticle)
+Mapped "{[/inside/article/updateOne],methods=[POST]}" onto public com.zc.utils.CommonResult com.zc.controller.InsideArticleController.updateOne(com.zc.domain.InsideArticle)
+Mapped "{[/inside/article/addOne],methods=[POST]}" onto public com.zc.utils.CommonResult com.zc.controller.InsideArticleController.addOne(com.zc.domain.InsideArticle)
+Mapped "{[/outside/article/list],methods=[GET]}" onto public com.zc.utils.CommonResult com.zc.controller.OutsideArticleController.getOutsideArticleList(com.zc.utils.CommonPage,com.zc.domain.OutsideArticle)
+Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Detected @ExceptionHandler methods in exceptionHandle
+Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Registering beans for JMX exposure on startup
+Bean with name 'statFilter' has been autodetected for JMX exposure
+Bean with name 'dataSource' has been autodetected for JMX exposure
+Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
+Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
+Initializing ProtocolHandler ["http-nio-8080"]
+Starting ProtocolHandler ["http-nio-8080"]
+Using a shared selector for servlet write/read
+Tomcat started on port(s): 8080 (http)
+Started MyBlogApplication in 10.003 seconds (JVM running for 10.618)
+A cookie header was received [1516002731; Idea-685a4c78=2f3b8632-15e9-4eb5-b6f9-a7f88b22e88c] that contained an invalid cookie. That cookie will be ignored.Note: further occurrences of this error will be logged at DEBUG level.
+Initializing Spring FrameworkServlet 'dispatcherServlet'
+FrameworkServlet 'dispatcherServlet': initialization started
+FrameworkServlet 'dispatcherServlet': initialization completed in 22 ms
+【系统异常】:org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4dbb42b7: startup date [Wed Feb 07 16:13:44 CST 2018]; root of context hierarchy

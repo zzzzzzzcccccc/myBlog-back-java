@@ -13,3 +13,5 @@ spring:
 commonConfig:
   commonUploadFilePath: http://localhost:8080/
   uploadPath: /Users/zouchen/work/javaProject/myBlog/src/main/resources/static/
+logging:
+  config: classpath:log4j2-dev.xml
