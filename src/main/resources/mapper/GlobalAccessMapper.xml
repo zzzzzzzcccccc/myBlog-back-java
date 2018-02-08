@@ -15,8 +15,8 @@
     </sql>
 
     <sql id="checkSearch">
-        <if test="totalDate != null and totalDate != ''">
-            WHERE total_date = #{totalDate}
+        <if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+            WHERE total_date BETWEEN #{startTime} AND #{endTime}
         </if>
     </sql>
 

@@ -10,6 +10,7 @@ import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -39,12 +40,24 @@ public class IndexController {
 
         List<GlobalNav> navList = globalNavService.getGlobalNavList();
         List<GlobalBanner> bannerList = globalBannerService.getGlobalBannerList();
-        List<GlobalAccess> accessesList = globalAccessService.getGlobalAccessList();
+        int allVisitCount = globalAccessService.getAllVisitCount();
 
         map.put("navList", navList);
         map.put("bannerList", bannerList);
-        map.put("accessesList", accessesList);
+        map.put("allVisitCount", allVisitCount);
 
         return CommonResult.success(map);
+    }
+
+    /*
+    * 获取访问量列表
+    * @params startTime
+    * @params endTime
+    * */
+    @GetMapping(value = "/visitCountList")
+    public CommonResult getGlobalAssessList(@RequestParam(name = "startTime", required = false) String startTime,
+                                            @RequestParam(name = "endTime", required = false) String endTime) {
+
+        return CommonResult.success(globalAccessService.getGlobalAccessList(startTime, endTime));
     }
 }

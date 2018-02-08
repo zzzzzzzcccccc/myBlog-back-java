@@ -16,7 +16,8 @@ public interface GlobalAccessMapper {
     * 查询所有首页访问量
     * @params globalAccess
     * */
-    public List<GlobalAccess> findAll(@Param("totalDate") String totalDate);
+    public List<GlobalAccess> findAll(@Param("startTime") String startTime,
+                                      @Param("endTime") String endTime);
 
     /*
     * 新增一个首页统计访问的维度
