@@ -50,6 +50,15 @@ public class IndexController {
     }
 
     /*
+    * 获取单独导航栏列表
+    * */
+    @GetMapping(value = "/navList")
+    public CommonResult getNavList() {
+
+        return CommonResult.success(globalNavService.getGlobalNavList());
+    }
+
+    /*
     * 获取访问量列表
     * @params startTime
     * @params endTime

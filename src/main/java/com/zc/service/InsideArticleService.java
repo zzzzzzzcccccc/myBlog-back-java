@@ -7,6 +7,7 @@ import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ public class InsideArticleService {
     * 新增一个内部文章
     * @params insideArticle
     * */
+    @Transactional
     public CommonResult addOne(InsideArticle insideArticle) {
         if (insideArticle.getArticleTypeId() == null || insideArticle.getArticleContent() == null || insideArticle.getArticleAuthor() == null) {
             return CommonResult.paramsError("");
@@ -60,6 +62,7 @@ public class InsideArticleService {
     * 编辑一个内部文章
     * @params insideArticle
     * */
+    @Transactional
     public CommonResult updateOne(InsideArticle insideArticle) {
         if (insideArticle.getId() == null || insideArticle.getArticleTypeId() == null || insideArticle.getArticleContent() == null || insideArticle.getArticleAuthor() == null) {
             return CommonResult.paramsError("");
@@ -75,6 +78,7 @@ public class InsideArticleService {
     * 删除一片内部文章
     * @params insideArticle
     * */
+    @Transactional
     public CommonResult deleteOne(InsideArticle insideArticle) {
         if (insideArticle.getId() == null) {
             return CommonResult.paramsError("");

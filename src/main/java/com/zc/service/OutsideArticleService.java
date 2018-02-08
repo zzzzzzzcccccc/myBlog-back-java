@@ -1,6 +1,8 @@
 package com.zc.service;
 
+import com.zc.domain.ArticleType;
 import com.zc.domain.OutsideArticle;
+import com.zc.mapper.ArticleTypeMapper;
 import com.zc.mapper.OutsideArticleMapper;
 import com.zc.utils.CommonPage;
 import com.zc.utils.CommonResult;
@@ -13,6 +15,9 @@ import java.util.Map;
 
 @Service
 public class OutsideArticleService {
+
+    @Autowired
+    private ArticleTypeService articleTypeService;
 
     @Autowired
     private OutsideArticleMapper outsideArticleMapper;
@@ -28,9 +33,11 @@ public class OutsideArticleService {
 
         commonPage.setTotal(outsideArticleMapper.countAll(outsideArticle));
 
+        List<ArticleType> articleTypeList = articleTypeService.getArticleTypeList();
         List<OutsideArticle> all = outsideArticleMapper.findAll(commonPage, outsideArticle);
 
         map.put("page", commonPage);
+        map.put("articleTypeList", articleTypeList);
         map.put("list", all);
 
 

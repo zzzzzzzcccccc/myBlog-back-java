@@ -7,6 +7,7 @@ import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ public class CommentService {
     * 新增一条评论
     * @params comment
     * */
+    @Transactional
     public CommonResult addOne(Comment comment) {
 
         if (comment.getArticleId() == null || comment.getCommentContent() == null || comment.getCommentEmail() == null) {
@@ -61,6 +63,7 @@ public class CommentService {
     * 删除一条评论
     * @params comment
     * */
+    @Transactional
     public CommonResult deleteOne(Comment comment) {
         if (comment.getId() == null) {
             return  CommonResult.paramsError("");

@@ -6,6 +6,7 @@ import com.zc.utils.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -38,6 +39,7 @@ public class GlobalAccessService {
     /*
     * 获取总访问量
     * */
+    @Transactional
     public Integer getAllVisitCount() {
         List<GlobalAccess> all = this.doVisitCount();
         int count = 0;
