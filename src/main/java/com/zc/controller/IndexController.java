@@ -1,7 +1,9 @@
 package com.zc.controller;
 
+import com.zc.domain.GlobalAccess;
 import com.zc.domain.GlobalBanner;
 import com.zc.domain.GlobalNav;
+import com.zc.service.GlobalAccessService;
 import com.zc.service.GlobalBannerService;
 import com.zc.service.GlobalNavService;
 import com.zc.utils.CommonResult;
@@ -24,6 +26,9 @@ public class IndexController {
     @Autowired
     private GlobalBannerService globalBannerService;
 
+    @Autowired
+    private GlobalAccessService globalAccessService;
+
     /*
     * 获取首页所有配置信息
     * */
@@ -34,9 +39,11 @@ public class IndexController {
 
         List<GlobalNav> navList = globalNavService.getGlobalNavList();
         List<GlobalBanner> bannerList = globalBannerService.getGlobalBannerList();
+        List<GlobalAccess> accessesList = globalAccessService.getGlobalAccessList();
 
         map.put("navList", navList);
         map.put("bannerList", bannerList);
+        map.put("accessesList", accessesList);
 
         return CommonResult.success(map);
     }

@@ -25,27 +25,29 @@
     </sql>
 
     <sql id="checkUpdate">
-        <if test="articleTitle != null and articleTitle != ''">
-            article_title = #{articleTitle}
-        </if>
-        <if test="articleAuthor != null and articleAuthor != ''">
-            article_author = #{articleAuthor}
-        </if>
-        <if test="articleLikeCount != null and articleLikeCount != ''">
-            article_like_count = #{articleLikeCount}
-        </if>
-        <if test="visitCount != null and visitCount != ''">
-            visit_count = #{visitCount}
-        </if>
-        <if test="articleContent != null and articleContent != ''">
-            article_content = #{articleContent}
-        </if>
-        <if test="remark != null and remark != ''">
-            remark = #{remark}
-        </if>
-        <if test="articleTypeId != null and articleTypeId != ''">
-            article_type_id = #{articleTypeId}
-        </if>
+        <trim prefix="set" suffixOverrides=",">
+            <if test="articleTitle != null and articleTitle != ''">
+                article_title = #{articleTitle},
+            </if>
+            <if test="articleAuthor != null and articleAuthor != ''">
+                article_author = #{articleAuthor},
+            </if>
+            <if test="articleLikeCount != null and articleLikeCount != ''">
+                article_like_count = #{articleLikeCount},
+            </if>
+            <if test="visitCount != null and visitCount != ''">
+                visit_count = #{visitCount},
+            </if>
+            <if test="articleContent != null and articleContent != ''">
+                article_content = #{articleContent},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="articleTypeId != null and articleTypeId != ''">
+                article_type_id = #{articleTypeId},
+            </if>
+        </trim>
         update_time = #{updateTime}
     </sql>
 
