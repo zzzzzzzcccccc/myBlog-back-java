@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.zc.domain.GlobalNav">
         <id column="id" property="id"></id>
         <result column="name" property="name"></result>
+        <result column="en_name" property="enName"></result>
         <result column="href" property="href"></result>
         <result column="icon_url" property="iconUrl"></result>
         <result column="icon_class_name" property="iconClassName"></result>
@@ -14,7 +15,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, href, icon_url, icon_class_name, visible, remark, create_time, update_time
+        id, name, en_name, href, icon_url, icon_class_name, visible, remark, create_time, update_time
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">

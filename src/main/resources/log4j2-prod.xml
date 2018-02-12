@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <properties>
-        <property name="LOG_HOME">/Users/zouchen/work/javaProject/myBlog/src/logs/</property>
+        <property name="LOG_HOME">/home/logs/</property>
         <property name="LOG_FILE_NAME">myBlog</property>
         <property name="LOG_OUT_FORMAT">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
     </properties>

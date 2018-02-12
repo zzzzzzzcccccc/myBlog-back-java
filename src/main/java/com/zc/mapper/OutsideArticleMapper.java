@@ -25,4 +25,10 @@ public interface OutsideArticleMapper {
     * @params outsideArticle
     * */
     public Integer countAll(@Param("outsideArticle") OutsideArticle outsideArticle);
+
+    /*
+    * 外部文章访问量+1
+    * @params id
+    * */
+    public void updateVisitCount(@Param("id") String id);
 }

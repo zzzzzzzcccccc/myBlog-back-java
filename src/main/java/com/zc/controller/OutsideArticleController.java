@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(value = "/outside/article")
 public class OutsideArticleController {
@@ -25,5 +27,15 @@ public class OutsideArticleController {
     public CommonResult getOutsideArticleList(CommonPage commonPage, OutsideArticle outsideArticle) {
 
         return outsideArticleService.getOutsideArticleList(commonPage, outsideArticle);
+    }
+
+    /*
+    * 外部文章访问量+1
+    * @params id
+    * */
+    @GetMapping(value = "/updateVisitCount")
+    public CommonResult updateVisitCount(HttpServletRequest request) {
+
+        return outsideArticleService.updateVisitCount(request.getParameter("id"));
     }
 }

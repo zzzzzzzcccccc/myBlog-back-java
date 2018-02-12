@@ -17,6 +17,8 @@ public class GlobalNav {
 
     private String name;
 
+    private String enName;
+
     private String href;
 
     private String iconUrl;
@@ -103,6 +105,14 @@ public class GlobalNav {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getEnName() {
+        return enName;
+    }
+
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,21 @@ public class OutsideArticleService {
             return CommonResult.isNull(map);
         } else {
             return CommonResult.success(map);
+        }
+    }
+
+    /*
+    * 外部文章访问量+1
+    * @params id
+    * */
+    @Transactional
+    public CommonResult updateVisitCount(String id) {
+        if (id == null) {
+            return CommonResult.paramsError("");
+        } else {
+            outsideArticleMapper.updateVisitCount(id);
+
+            return CommonResult.success("");
         }
     }
 }

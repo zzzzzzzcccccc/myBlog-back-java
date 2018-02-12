@@ -29,12 +29,16 @@
         SELECT <include refid="Base_Column_List" />
         FROM outside_article
         <include refid="search" />
-        ORDER BY create_time DESC
+        ORDER BY visit_count DESC
         limit #{commonPage.limitPageNum},#{commonPage.pageSize};
     </select>
 
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM outside_article <include refid="search" />;
     </select>
+
+    <update id="updateVisitCount">
+        UPDATE outside_article SET visit_count=visit_count+1, update_time=NOW() WHERE id = #{id};
+    </update>
 
 </mapper>
