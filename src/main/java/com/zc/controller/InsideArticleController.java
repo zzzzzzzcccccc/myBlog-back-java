@@ -18,38 +18,23 @@ import javax.servlet.http.HttpServletRequest;
 public class InsideArticleController {
 
     @Autowired
-    private ArticleTypeService articleTypeService;
-
-    @Autowired
     private InsideArticleService insideArticleService;
-
-    /*
-    * 获取文章分类列表
-    * */
-    @GetMapping(value = "/type")
-    public CommonResult getArticleTypeList() {
-
-        return CommonResult.success(articleTypeService.getArticleTypeList());
-    }
-
-    /*
-    * 根据id查询当前文章分类
-    * */
-    @GetMapping(value = "/type/getOne")
-    public CommonResult getArticleTypeOne(HttpServletRequest request) {
-
-        return CommonResult.success(articleTypeService.getArticleTypeOne(request.getParameter("id")));
-    }
 
     /*
     * 获取内部文章列表
     * @params commonPage
     * @params insideArticle
     * */
-    @PostMapping(value = "/list")
+    @GetMapping(value = "/list")
     public CommonResult getInsideArticle(CommonPage commonPage, InsideArticle insideArticle) {
 
         return insideArticleService.getInsideArticle(commonPage, insideArticle);
+    }
+
+    @PostMapping(value = "/findById")
+    public CommonResult findById(HttpServletRequest request) {
+
+        return insideArticleService.findById(request.getParameter("id"));
     }
 
     /*
@@ -70,6 +55,16 @@ public class InsideArticleController {
     public CommonResult updateOne(InsideArticle insideArticle) {
 
         return insideArticleService.updateOne(insideArticle);
+    }
+
+    /*
+    * 内部文章访问量加1
+    * @params id
+    * */
+    @GetMapping(value = "/updateVisitCount")
+    public CommonResult updateVisitCount(HttpServletRequest request) {
+
+        return insideArticleService.updateVisitCount(request.getParameter("id"));
     }
 
     /*

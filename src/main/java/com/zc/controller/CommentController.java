@@ -24,7 +24,7 @@ public class CommentController {
     * @params commonPage
     * @params comment
     * */
-    @PostMapping(value = "/list")
+    @GetMapping(value = "/list")
     public CommonResult getCommentList(CommonPage commonPage, Comment comment) {
 
         return commentService.getCommentList(commonPage, comment);

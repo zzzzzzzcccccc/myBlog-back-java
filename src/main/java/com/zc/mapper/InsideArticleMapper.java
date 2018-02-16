@@ -27,6 +27,12 @@ public interface InsideArticleMapper {
     public Integer countAll(@Param("insideArticle") InsideArticle insideArticle);
 
     /*
+    * 根据id查询一篇内部文章
+    * @params id
+    * */
+    public InsideArticle findById(@Param("id") String id);
+
+    /*
     * 新增一个内部文章
     * @params insideArticle
     * */
@@ -37,6 +43,12 @@ public interface InsideArticleMapper {
     * @params insideArticle
     * */
     public void updateOne(InsideArticle insideArticle);
+
+    /*
+    * 内部文章访问量加1
+    * @params id
+    * */
+    public void updateVisitCount(@Param("id") String id);
 
     /*
     * 删除一个内部文章

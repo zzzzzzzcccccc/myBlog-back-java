@@ -20,8 +20,8 @@ public class OutsideArticleController {
 
     /*
     * 查询所有外部文章列表
-    * @params
-    * @params
+    * @params commonPage
+    * @params outsideArticle
     * */
     @GetMapping(value = "/list")
     public CommonResult getOutsideArticleList(CommonPage commonPage, OutsideArticle outsideArticle) {

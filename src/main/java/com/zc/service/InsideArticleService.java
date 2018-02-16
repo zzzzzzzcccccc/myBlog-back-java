@@ -1,5 +1,6 @@
 package com.zc.service;
 
+import com.zc.domain.ArticleType;
 import com.zc.domain.InsideArticle;
 import com.zc.mapper.InsideArticleMapper;
 import com.zc.utils.CommonPage;
@@ -19,6 +20,9 @@ public class InsideArticleService {
     @Autowired
     private InsideArticleMapper insideArticleMapper;
 
+    @Autowired
+    private ArticleTypeService articleTypeService;
+
     /*
     * 获取所有内部文章
     * @params commonPage
@@ -31,13 +35,35 @@ public class InsideArticleService {
         commonPage.setTotal(insideArticleMapper.countAll(insideArticle));
 
         List<InsideArticle> all = insideArticleMapper.findAll(commonPage, insideArticle);
+        List<ArticleType> articleTypeList = articleTypeService.getArticleTypeList();
 
         map.put("page", commonPage);
+        map.put("articleTypeList", articleTypeList);
         map.put("list", all);
 
         if (all.size() == 0) {
             return CommonResult.isNull(map);
         } else {
+            return CommonResult.success(map);
+        }
+    }
+
+    /*
+    * 根据id查询一篇内部文章
+    * @params id
+    * */
+    public CommonResult findById(String id) {
+        if (id == null) {
+            return CommonResult.paramsError("");
+        } else {
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            InsideArticle insideArticle = insideArticleMapper.findById(id);
+            List<ArticleType> articleTypeList = articleTypeService.getArticleTypeList();
+
+            map.put("insideArticle", insideArticle);
+            map.put("articleTypeList", articleTypeList);
+
             return CommonResult.success(map);
         }
     }
@@ -71,6 +97,21 @@ public class InsideArticleService {
             insideArticleMapper.updateOne(insideArticle);
 
             return CommonResult.success(insideArticle);
+        }
+    }
+
+    /*
+    * 内部文章访问量加1
+    * @params id
+    * */
+    @Transactional
+    public CommonResult updateVisitCount(String id) {
+        if (id == null) {
+            return CommonResult.paramsError("");
+        } else {
+            insideArticleMapper.updateVisitCount(id);
+
+            return CommonResult.success("");
         }
     }
 

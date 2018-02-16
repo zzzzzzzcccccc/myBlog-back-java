@@ -15,7 +15,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, article_title, article_author, article_like_count, visit_count, article_content, remark, create_time, update_time, article_type_id
+        id, article_title, article_author, article_like_count, visit_count, remark, create_time, update_time, article_type_id
     </sql>
 
     <sql id="search">
@@ -38,9 +38,6 @@
             <if test="visitCount != null and visitCount != ''">
                 visit_count = #{visitCount},
             </if>
-            <if test="articleContent != null and articleContent != ''">
-                article_content = #{articleContent},
-            </if>
             <if test="remark != null and remark != ''">
                 remark = #{remark},
             </if>
@@ -56,12 +53,18 @@
         <include refid="Base_Column_List"></include>
         FROM inside_article
         <include refid="search"></include>
-        ORDER BY create_time DESC
+        ORDER BY create_time DESC, visit_count DESC
         limit #{commonPage.limitPageNum},#{commonPage.pageSize};
     </select>
 
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM inside_article <include refid="search" />;
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>, article_content
+        FROM inside_article WHERE id = #{id};
     </select>
 
     <insert id="addOne" parameterType="com.zc.domain.InsideArticle" useGeneratedKeys="true" keyProperty="id">
@@ -71,6 +74,10 @@
 
     <update id="updateOne" parameterType="com.zc.domain.InsideArticle">
         UPDATE inside_article SET <include refid="checkUpdate" /> WHERE id = #{id};
+    </update>
+
+    <update id="updateVisitCount">
+        UPDATE inside_article SET visit_count=visit_count+1, update_time=NOW() WHERE id = #{id};
     </update>
 
     <delete id="deleteOne" parameterType="com.zc.domain.InsideArticle">
