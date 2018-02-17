@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.mapper.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.zc.domain.SysUser">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="role_id" property="roleId"></result>
+        <result column="visible" property="visible"></result>
+        <result column="remark" property="remark"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, username, password, role_id, visible, remark, create_time, update_time
+    </sql>
+
+    <select id="checkLogin" resultType="INT">
+        SELECT COUNT(username) FROM  sys_user WHERE username = #{sysUser.username} AND password = MD5(#{sysUser.password});
+    </select>
+
+    <select id="findByUsername" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM sys_user WHERE username = #{sysUser.username};
+    </select>
+
+    <select id="checkAddOne" resultType="INT">
+        SELECT COUNT(*) FROM sys_user WHERE username = #{username};
+    </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.SysUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (username, password, role_id, visible, create_time, remark)
+        VALUES (#{username}, MD5(#{password}), #{roleId}, #{visible}, #{createTime}, #{remark});
+    </insert>
+</mapper>

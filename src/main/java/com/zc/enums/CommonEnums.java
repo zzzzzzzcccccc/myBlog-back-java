@@ -5,6 +5,9 @@ package com.zc.enums;
 * */
 public enum CommonEnums {
     SUCCESS(200, "success"),
+    USER_NAME_INFO(301, "账号已存在"),
+    LOGIN_ERROR(302, "账号或密码错误"),
+    LOGIN_VISIBLE(303, "该账号已被禁用"),
     NULL(404, "未查询到数据"),
     ERROR(500, "未知错误"),
     PARAMS(501, "请求参数错误"),

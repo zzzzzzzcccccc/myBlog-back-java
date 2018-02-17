@@ -15,3 +15,6 @@ commonConfig:
   uploadPath: /Users/zouchen/work/javaProject/myBlog/src/main/resources/static/
 logging:
   config: classpath:log4j2-dev.xml
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

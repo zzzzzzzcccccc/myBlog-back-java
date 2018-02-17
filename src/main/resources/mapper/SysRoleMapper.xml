@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.mapper.SysRoleMapper">
+    <resultMap id="BaseResultMap" type="com.zc.domain.SysRole">
+        <id column="id" property="id"></id>
+        <result column="role_name" property="roleName"></result>
+        <result column="authority_list" property="authorityList"></result>
+        <result column="remark" property="remark"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, role_name, authority_list, remark, create_time, update_time
+    </sql>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM sys_role WHERE id = #{id};
+    </select>
+</mapper>
