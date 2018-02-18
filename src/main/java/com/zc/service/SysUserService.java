@@ -8,7 +8,7 @@ import com.zc.mapper.SysModuleMapper;
 import com.zc.mapper.SysRoleMapper;
 import com.zc.mapper.SysUserMapper;
 import com.zc.utils.Common;
-import com.zc.utils.CommonLogger;
+import com.zc.utils.CommonPage;
 import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +59,7 @@ public class SysUserService {
 
     /*
     * 新增一个账号
+    * @params sysUser
     * */
     @Transactional
     public CommonResult addOne(SysUser sysUser) {
@@ -71,6 +72,60 @@ public class SysUserService {
             sysUserMapper.addOne(sysUser);
 
             return CommonResult.success(sysUser);
+        }
+    }
+
+    /*
+    * 查询账号列表
+    * @params sysUser
+    * @params commonPage
+    * */
+    public CommonResult findAll(SysUser sysUser, CommonPage commonPage) {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        commonPage.setTotal(sysUserMapper.countAll(sysUser));
+
+        List<SysUser> sysUsers = sysUserMapper.findAll(sysUser, commonPage);
+        List<SysRole> sysRoles = sysRoleMapper.findAllNoPage();
+
+        map.put("sysUsers", sysUsers);
+        map.put("sysRoles", sysRoles);
+        map.put("page", commonPage);
+
+        return CommonResult.success(map);
+    }
+
+    /*
+    * 删除一个账号信息
+    * @params sysUser
+    * */
+    @Transactional
+    public CommonResult deleteOne(SysUser sysUser) {
+        if (sysUser.getId() == null) {
+            return CommonResult.paramsError("");
+        } else {
+            sysUserMapper.deleteOne(sysUser);
+
+            return CommonResult.success("");
+        }
+    }
+
+    /*
+    * 更新一条账号信息
+    * @params id
+    * @params password
+    * @params roleId
+    * @params visible
+    * */
+    @Transactional
+    public CommonResult updateOne(String id, String password, String roleId, String visible) {
+        if (id == null || password == null || roleId == null || visible == null) {
+            return CommonResult.paramsError("");
+        } else {
+            sysUserMapper.updateOne(id, password, roleId, Boolean.parseBoolean(visible));
+
+            return CommonResult.success(sysUserMapper.findById(id));
         }
     }
 }

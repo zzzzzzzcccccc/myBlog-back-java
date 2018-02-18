@@ -16,12 +16,25 @@
         id, username, password, role_id, visible, remark, create_time, update_time
     </sql>
 
+    <sql id="search">
+        <if test="sysUser.username != null and sysUser.username != ''">
+            AND username LIKE concat('%',#{sysUser.username},'%')
+        </if>
+        <if test="sysUser.visible != null and sysUser.visible != ''">
+            AND visible = #{sysUser.visible}
+        </if>
+    </sql>
+
     <select id="checkLogin" resultType="INT">
         SELECT COUNT(username) FROM  sys_user WHERE username = #{sysUser.username} AND password = MD5(#{sysUser.password});
     </select>
 
     <select id="findByUsername" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" /> FROM sys_user WHERE username = #{sysUser.username};
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include> FROM sys_user WHERE id = #{id};
     </select>
 
     <select id="checkAddOne" resultType="INT">
@@ -32,4 +45,26 @@
         INSERT INTO sys_user (username, password, role_id, visible, create_time, remark)
         VALUES (#{username}, MD5(#{password}), #{roleId}, #{visible}, #{createTime}, #{remark});
     </insert>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM sys_user WHERE 1=1
+        <include refid="search"></include>
+        ORDER BY create_time DESC
+        limit #{commonPage.limitPageNum},#{commonPage.pageSize};
+    </select>
+
+    <select id="countAll" resultType="INT">
+        SELECT COUNT(*) FROM sys_user WHERE 1=1 <include refid="search"></include>;
+    </select>
+
+    <update id="updateOne">
+        UPDATE sys_user SET
+        password = MD5(#{password}), role_id = #{roleId}, visible = #{visible}, update_time = NOW()
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.SysUser">
+        DELETE FROM sys_user WHERE id = #{id};
+    </delete>
 </mapper>

@@ -14,6 +14,28 @@
         id, role_name, authority_list, remark, create_time, update_time
     </sql>
 
+    <sql id="search">
+        <if test="sysRole.roleName != null and sysRole.roleName != ''">
+            AND role_name LIKE concat('%',#{sysRole.roleName},'%')
+        </if>
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM sys_role WHERE 1=1
+        <include refid="search" />
+        ORDER BY create_time DESC
+        limit #{commonPage.limitPageNum}, #{commonPage.pageSize};
+    </select>
+
+    <select id="countAll" resultType="INT">
+        SELECT COUNT(*) FROM sys_role WHERE 1=1 <include refid="search" />;
+    </select>
+
+    <select id="findAllNoPage" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include> FROM sys_role;
+    </select>
+
     <select id="findById" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" /> FROM sys_role WHERE id = #{id};
     </select>
