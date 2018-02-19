@@ -33,6 +33,10 @@
         limit #{commonPage.limitPageNum},#{commonPage.pageSize};
     </select>
 
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include> FROM outside_article WHERE id = #{id};
+    </select>
+
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM outside_article <include refid="search" />;
     </select>
@@ -40,5 +44,19 @@
     <update id="updateVisitCount">
         UPDATE outside_article SET visit_count=visit_count+1, update_time=NOW() WHERE id = #{id};
     </update>
+
+    <insert id="addOne" parameterType="com.zc.domain.OutsideArticle" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO outside_article (article_title, article_image_url, article_href, article_author, article_source, visit_count, article_like_count, create_time, article_type_id)
+        VALUES (#{articleTitle}, #{articleImageUrl}, #{articleHref}, #{articleAuthor}, #{articleSource}, #{visitCount}, #{articleLikeCount}, #{createTime}, #{articleTypeId});
+    </insert>
+
+    <update id="updateOne">
+        UPDATE outside_article SET article_title=#{articleTitle}, article_href=#{articleHref}, article_author=#{articleAuthor}, article_type_id=#{articleTypeId}, update_time=NOW()
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.OutsideArticle">
+        DELETE FROM outside_article WHERE id = #{id};
+    </delete>
 
 </mapper>

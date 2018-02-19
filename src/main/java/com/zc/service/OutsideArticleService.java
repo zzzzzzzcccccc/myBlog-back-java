@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,64 @@ public class OutsideArticleService {
             return CommonResult.paramsError("");
         } else {
             outsideArticleMapper.updateVisitCount(id);
+
+            return CommonResult.success("");
+        }
+    }
+
+    /*
+    * 新增一个外部文章
+    * @params
+    * */
+    @Transactional
+    public CommonResult addOne(OutsideArticle outsideArticle) {
+        if (outsideArticle.getArticleTitle() == null ||
+                outsideArticle.getArticleHref() == null ||
+                outsideArticle.getArticleTypeId() == null) {
+            return CommonResult.paramsError("");
+        } else {
+            outsideArticle.setVisitCount(0);
+            outsideArticle.setArticleLikeCount(0);
+            outsideArticle.setCreateTime(new Date());
+            outsideArticleMapper.addOne(outsideArticle);
+
+            return CommonResult.success(outsideArticle);
+        }
+    }
+
+    /*
+    * 编辑一个外部文章
+    * @params id
+    * @params articleTitle
+    * @params articleHref
+    * @params articleAuthor
+    * @params articleTypeId
+    * */
+    @Transactional
+    public CommonResult updateOne(String id,
+                                  String articleTitle,
+                                  String articleHref,
+                                  String articleAuthor,
+                                  String articleTypeId) {
+        if (id == null || articleTitle == null || articleHref == null ||articleTypeId == null) {
+            return CommonResult.paramsError("");
+        } else {
+            outsideArticleMapper.updateOne(id, articleTitle, articleHref, articleAuthor, articleTypeId);
+
+            return CommonResult.success(outsideArticleMapper.findById(id));
+        }
+    }
+
+    /*
+    * 删除一个内部文章
+    * @params outsideArticle
+    * */
+    @Transactional
+    public CommonResult deleteOne(OutsideArticle outsideArticle) {
+        if (outsideArticle.getId() == null) {
+            return CommonResult.paramsError("");
+        } else {
+            outsideArticleMapper.deleteOne(outsideArticle);
 
             return CommonResult.success("");
         }

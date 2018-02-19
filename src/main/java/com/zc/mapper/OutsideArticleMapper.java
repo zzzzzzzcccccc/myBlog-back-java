@@ -21,6 +21,12 @@ public interface OutsideArticleMapper {
                                         @Param("outsideArticle") OutsideArticle outsideArticle);
 
     /*
+    * 根据id查询
+    * @params id
+    * */
+    public OutsideArticle findById(@Param("id") String id);
+
+    /*
     * 查询所有外部文章总数
     * @params outsideArticle
     * */
@@ -31,4 +37,30 @@ public interface OutsideArticleMapper {
     * @params id
     * */
     public void updateVisitCount(@Param("id") String id);
+
+    /*
+    * 新增一个外部文章
+    * @params outsideArticle
+    * */
+    public void addOne(OutsideArticle outsideArticle);
+
+    /*
+    * 编辑一个外部文章
+    * @params id
+    * @params articleTitle
+    * @params articleHref
+    * @params articleAuthor
+    * @params articleTypeId
+    * */
+    public void updateOne(@Param("id") String id,
+                          @Param("articleTitle") String articleTitle,
+                          @Param("articleHref") String articleHref,
+                          @Param("articleAuthor") String articleAuthor,
+                          @Param("articleTypeId") String articleTypeId);
+
+    /*
+    * 删除一个外部文章
+    * @params outsideArticle
+    * */
+    public void deleteOne(OutsideArticle outsideArticle);
 }
