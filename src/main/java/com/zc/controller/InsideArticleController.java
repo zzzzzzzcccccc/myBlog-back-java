@@ -49,12 +49,30 @@ public class InsideArticleController {
 
     /*
     * 编辑一个内部文章
-    * @params insideArticle
+    * @params id
+    * @params articleTitle
+    * @params articleAuthor
+    * @params articleTypeId
     * */
     @PostMapping(value = "/updateOne")
-    public CommonResult updateOne(InsideArticle insideArticle) {
+    public CommonResult updateOne(HttpServletRequest request) {
 
-        return insideArticleService.updateOne(insideArticle);
+        return insideArticleService.updateOne(request.getParameter("id"),
+                request.getParameter("articleTitle"),
+                request.getParameter("articleAuthor"),
+                request.getParameter("articleTypeId"));
+    }
+
+    /*
+    * 编辑一个内部文章的内容
+    * @params id
+    * @params articleContent
+    * */
+    @PostMapping(value = "/updateByArticleContent")
+    public CommonResult updateByArticleContent(HttpServletRequest request) {
+
+        return insideArticleService.updateByArticleContent(request.getParameter("id"),
+                request.getParameter("articleContent"));
     }
 
     /*

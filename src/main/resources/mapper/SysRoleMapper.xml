@@ -39,4 +39,25 @@
     <select id="findById" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" /> FROM sys_role WHERE id = #{id};
     </select>
+
+    <select id="checkRoleName" resultType="INT">
+        SELECT COUNT(*) FROM sys_role WHERE role_name = #{roleName};
+    </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.SysRole" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_role (role_name, create_time)
+        VALUES (#{roleName}, #{createTime});
+    </insert>
+
+    <update id="updateByRoleName">
+        UPDATE sys_role SET role_name = #{roleName}, update_time = NOW() WHERE id = #{id};
+    </update>
+
+    <update id="updateByAuthorityList">
+        UPDATE sys_role SET authority_list = #{authorityList}, update_time = NOW() WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.SysRole">
+        DELETE FROM sys_role WHERE id = #{id};
+    </delete>
 </mapper>

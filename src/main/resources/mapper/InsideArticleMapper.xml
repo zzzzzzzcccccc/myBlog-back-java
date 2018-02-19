@@ -72,8 +72,12 @@
         VALUES (#{articleTitle}, #{articleAuthor}, #{articleLikeCount}, #{visitCount}, #{articleContent}, #{remark}, #{createTime}, #{articleTypeId});
     </insert>
 
-    <update id="updateOne" parameterType="com.zc.domain.InsideArticle">
-        UPDATE inside_article SET <include refid="checkUpdate" /> WHERE id = #{id};
+    <update id="updateOne">
+        UPDATE inside_article SET article_title=#{articleTitle}, article_author=#{articleAuthor}, article_type_id = #{articleTypeId}, update_time=NOW() WHERE id = #{id};
+    </update>
+
+    <update id="updateByArticleContent">
+        UPDATE inside_article SET article_content=#{articleContent}, update_time=NOW() WHERE id = #{id};
     </update>
 
     <update id="updateVisitCount">

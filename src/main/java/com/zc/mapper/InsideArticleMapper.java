@@ -40,9 +40,23 @@ public interface InsideArticleMapper {
 
     /*
     * 更新一个内部文章
-    * @params insideArticle
+    * @params id
+    * @params articleTitle
+    * @params articleAuthor
+    * @params articleTypeId
     * */
-    public void updateOne(InsideArticle insideArticle);
+    public void updateOne(@Param("id") String id,
+                          @Param("articleTitle") String articleTitle,
+                          @Param("articleAuthor") String articleAuthor,
+                          @Param("articleTypeId") String articleTypeId);
+
+    /*
+    * 更新一个内部文章内容
+    * @params id
+    * @params articleContent
+    * */
+    public void updateByArticleContent(@Param("id") String id,
+                                       @Param("articleContent") String articleContent);
 
     /*
     * 内部文章访问量加1

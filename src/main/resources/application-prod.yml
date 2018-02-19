@@ -11,7 +11,7 @@ spring:
     username: root
     password: 789456
 commonConfig:
-  commonUploadFilePath: https://zouchenwd.cn/
-  uploadPath: /Users/zouchen/work/javaProject/myBlog/src/main/resources/static/
+  commonUploadFilePath: https://zouchenwd.cn:8081/img/
+  uploadPath: /home/web/myBlog/static/dist/img/
 logging:
   config: classpath:log4j2-prod.xml

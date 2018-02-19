@@ -41,11 +41,7 @@ public class InsideArticleService {
         map.put("articleTypeList", articleTypeList);
         map.put("list", all);
 
-        if (all.size() == 0) {
-            return CommonResult.isNull(map);
-        } else {
-            return CommonResult.success(map);
-        }
+        return CommonResult.success(map);
     }
 
     /*
@@ -74,10 +70,11 @@ public class InsideArticleService {
     * */
     @Transactional
     public CommonResult addOne(InsideArticle insideArticle) {
-        if (insideArticle.getArticleTypeId() == null || insideArticle.getArticleContent() == null || insideArticle.getArticleAuthor() == null) {
+        if (insideArticle.getArticleTypeId() == null || insideArticle.getArticleAuthor() == null || insideArticle.getArticleTitle() == null) {
             return CommonResult.paramsError("");
         } else {
             insideArticle.setCreateTime(new Date());
+            insideArticle.setVisitCount(0);
             insideArticleMapper.addOne(insideArticle);
 
             return CommonResult.success(insideArticle);
@@ -86,17 +83,35 @@ public class InsideArticleService {
 
     /*
     * 编辑一个内部文章
-    * @params insideArticle
+    * @params id
+    * @params articleTitle
+    * @params articleAuthor
+    * @params articleTypeId
     * */
     @Transactional
-    public CommonResult updateOne(InsideArticle insideArticle) {
-        if (insideArticle.getId() == null || insideArticle.getArticleTypeId() == null || insideArticle.getArticleContent() == null || insideArticle.getArticleAuthor() == null) {
+    public CommonResult updateOne(String id, String articleTitle, String articleAuthor, String articleTypeId) {
+        if (id == null || articleTitle == null || articleAuthor == null || articleTypeId == null) {
             return CommonResult.paramsError("");
         } else {
-            insideArticle.setUpdateTime(new Date());
-            insideArticleMapper.updateOne(insideArticle);
+            insideArticleMapper.updateOne(id, articleTitle, articleAuthor, articleTypeId);
 
-            return CommonResult.success(insideArticle);
+            return CommonResult.success(insideArticleMapper.findById(id));
+        }
+    }
+
+    /*
+    * 编辑一个内部文章的内容
+    * @params id
+    * @params articleContent
+    * */
+    @Transactional
+    public CommonResult updateByArticleContent(String id, String articleContent) {
+        if (id == null || articleContent == null) {
+            return CommonResult.paramsError("");
+        } else {
+            insideArticleMapper.updateByArticleContent(id, articleContent);
+
+            return CommonResult.success(insideArticleMapper.findById(id));
         }
     }
 

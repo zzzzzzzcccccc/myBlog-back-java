@@ -41,12 +41,7 @@ public class OutsideArticleService {
         map.put("articleTypeList", articleTypeList);
         map.put("list", all);
 
-
-        if (all.size() == 0) {
-            return CommonResult.isNull(map);
-        } else {
-            return CommonResult.success(map);
-        }
+        return CommonResult.success(map);
     }
 
     /*
