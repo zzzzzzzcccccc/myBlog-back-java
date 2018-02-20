@@ -46,6 +46,15 @@ public class OutsideArticleService {
     }
 
     /*
+    * 根据文章类型查询
+    * @params articleTypeId
+    * */
+    public List<OutsideArticle> findByArticleTypeId (String articleTypeId) {
+
+        return outsideArticleMapper.findByArticleTypeId(articleTypeId);
+    }
+
+    /*
     * 外部文章访问量+1
     * @params id
     * */

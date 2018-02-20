@@ -1,12 +1,9 @@
 package com.zc.controller;
 
-import com.zc.domain.GlobalAccess;
-import com.zc.domain.GlobalBanner;
-import com.zc.domain.GlobalNav;
-import com.zc.service.GlobalAccessService;
-import com.zc.service.GlobalBannerService;
-import com.zc.service.GlobalNavService;
+import com.zc.domain.*;
+import com.zc.service.*;
 import com.zc.utils.CommonResult;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +26,12 @@ public class IndexController {
 
     @Autowired
     private GlobalAccessService globalAccessService;
+
+    @Autowired
+    private InsideArticleService insideArticleService;
+
+    @Autowired
+    private OutsideArticleService outsideArticleService;
 
     /*
     * 获取首页所有配置信息
@@ -68,5 +71,28 @@ public class IndexController {
                                             @RequestParam(name = "endTime", required = false) String endTime) {
 
         return CommonResult.success(globalAccessService.getGlobalAccessList(startTime, endTime));
+    }
+
+    /*
+    * 根据文章类型id查询所有文章列表
+    * @params articleTypeId
+    * */
+    @GetMapping(value = "/allArticleList")
+    public CommonResult findByArticleTypeId(HttpServletRequest request) {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        String articleTypeId = request.getParameter("articleTypeId");
+
+        if (articleTypeId == null) {
+            return CommonResult.paramsError("");
+        }
+
+        List<OutsideArticle> outsideArticles = outsideArticleService.findByArticleTypeId(articleTypeId);
+        List<InsideArticle> insideArticles = insideArticleService.findByArticleTypeId(articleTypeId);
+
+        map.put("outsideArticles", outsideArticles);
+        map.put("insideArticles", insideArticles);
+
+        return CommonResult.success(map);
     }
 }

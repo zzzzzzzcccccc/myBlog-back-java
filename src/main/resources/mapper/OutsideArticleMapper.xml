@@ -37,6 +37,12 @@
         SELECT <include refid="Base_Column_List"></include> FROM outside_article WHERE id = #{id};
     </select>
 
+    <select id="findByArticleTypeId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM outside_article
+        WHERE article_type_id = #{articleTypeId}
+        ORDER BY create_time DESC;
+    </select>
+
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM outside_article <include refid="search" />;
     </select>

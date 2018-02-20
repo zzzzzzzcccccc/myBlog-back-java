@@ -33,6 +33,12 @@ public interface InsideArticleMapper {
     public InsideArticle findById(@Param("id") String id);
 
     /*
+    * 根据文章类型查询
+    * @params articleTypeId
+    * */
+    public List<InsideArticle> findByArticleTypeId(@Param("articleTypeId") String articleTypeId);
+
+    /*
     * 新增一个内部文章
     * @params insideArticle
     * */

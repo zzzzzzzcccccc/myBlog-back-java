@@ -27,6 +27,12 @@ public interface OutsideArticleMapper {
     public OutsideArticle findById(@Param("id") String id);
 
     /*
+    * 根据文章类型id查询
+    * @params articleTypeId
+    * */
+    public List<OutsideArticle> findByArticleTypeId(@Param("articleTypeId") String articleTypeId);
+
+    /*
     * 查询所有外部文章总数
     * @params outsideArticle
     * */

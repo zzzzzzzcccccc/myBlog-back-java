@@ -13,5 +13,6 @@ spring:
 commonConfig:
   commonUploadFilePath: https://zouchenwd.cn:8081/img/
   uploadPath: /home/web/myBlog/static/dist/img/
+  CORSHost: https://zouchenwd.cn
 logging:
   config: classpath:log4j2-prod.xml

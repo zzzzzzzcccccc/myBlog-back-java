@@ -57,6 +57,12 @@
         limit #{commonPage.limitPageNum},#{commonPage.pageSize};
     </select>
 
+    <select id="findByArticleTypeId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM inside_article
+        WHERE article_type_id = #{articleTypeId}
+        ORDER BY create_time DESC;
+    </select>
+
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM inside_article <include refid="search" />;
     </select>

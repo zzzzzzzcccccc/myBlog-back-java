@@ -65,6 +65,15 @@ public class InsideArticleService {
     }
 
     /*
+    * 根据文章类型查询
+    * @params articleTypeId
+    * */
+    public List<InsideArticle> findByArticleTypeId (String articleTypeId) {
+
+        return insideArticleMapper.findByArticleTypeId(articleTypeId);
+    }
+
+    /*
     * 新增一个内部文章
     * @params insideArticle
     * */

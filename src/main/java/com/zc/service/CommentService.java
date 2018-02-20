@@ -30,16 +30,12 @@ public class CommentService {
 
         commonPage.setTotal(commentMapper.countAll(comment));
 
-        List<Comment> all = commentMapper.findAll(commonPage, comment);
+        List<Comment> comments = commentMapper.findAll(commonPage, comment);
 
         map.put("page", commonPage);
-        map.put("list", all);
+        map.put("list", comments);
 
-        if (all.size() == 0) {
-            return CommonResult.isNull(map);
-        } else {
-            return CommonResult.success(map);
-        }
+        return CommonResult.success(map);
     }
 
     /*
@@ -48,11 +44,11 @@ public class CommentService {
     * */
     @Transactional
     public CommonResult addOne(Comment comment) {
-
-        if (comment.getArticleId() == null || comment.getCommentContent() == null || comment.getCommentEmail() == null) {
+        if (comment.getArticleId() == null || comment.getCommentContent() == null || comment.getCommentEmail() == null || comment.getCommentName() == null) {
             return CommonResult.paramsError("");
         } else {
             comment.setCreateTime(new Date());
+            comment.setCommentLikeCount(0);
             commentMapper.addOne(comment);
 
             return CommonResult.success(comment);

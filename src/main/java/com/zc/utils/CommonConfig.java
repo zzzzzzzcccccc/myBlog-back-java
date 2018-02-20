@@ -11,6 +11,8 @@ public class CommonConfig {
 
     private String uploadPath;
 
+    private String CORSHost;
+
     public String getCommonUploadFilePath() {
         return commonUploadFilePath;
     }
@@ -27,11 +29,20 @@ public class CommonConfig {
         this.uploadPath = uploadPath;
     }
 
+    public String getCORSHost() {
+        return CORSHost;
+    }
+
+    public void setCORSHost(String CORSHost) {
+        this.CORSHost = CORSHost;
+    }
+
     @Override
     public String toString() {
         return "CommonConfig{" +
                 "commonUploadFilePath='" + commonUploadFilePath + '\'' +
                 ", uploadPath='" + uploadPath + '\'' +
+                ", CORSHost='" + CORSHost + '\'' +
                 '}';
     }
 }
