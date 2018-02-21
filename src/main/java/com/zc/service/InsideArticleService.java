@@ -110,6 +110,16 @@ public class InsideArticleService {
         if (id == null || articleTitle == null || articleAuthor == null || articleTypeId == null) {
             return CommonResult.paramsError("");
         } else {
+            // 更新了文章类型统计数值需要变更 这里做个判断是否变更没有
+            InsideArticle insideArticle = insideArticleMapper.findById(id);
+
+            if (!articleTypeId.equals(Long.toString(insideArticle.getArticleTypeId()))) {
+                // 原来类型减少1
+                articleTypeMapper.minusArticleCount(Long.toString(insideArticle.getArticleTypeId()));
+                // 新类型加1
+                articleTypeMapper.addArticleCount(articleTypeId);
+            }
+
             insideArticleMapper.updateOne(id, articleTitle, articleAuthor, articleTypeId);
 
             return CommonResult.success(insideArticleMapper.findById(id));
