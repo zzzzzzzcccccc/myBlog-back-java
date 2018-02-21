@@ -2,7 +2,10 @@ package com.zc.service;
 
 import com.zc.domain.ArticleType;
 import com.zc.domain.InsideArticle;
+import com.zc.domain.OutsideArticle;
+import com.zc.mapper.ArticleTypeMapper;
 import com.zc.mapper.InsideArticleMapper;
+import com.zc.mapper.OutsideArticleMapper;
 import com.zc.utils.CommonPage;
 import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class InsideArticleService {
 
     @Autowired
     private InsideArticleMapper insideArticleMapper;
+
+    @Autowired
+    private ArticleTypeMapper articleTypeMapper;
 
     @Autowired
     private ArticleTypeService articleTypeService;
@@ -86,6 +92,8 @@ public class InsideArticleService {
             insideArticle.setVisitCount(0);
             insideArticleMapper.addOne(insideArticle);
 
+            articleTypeMapper.addArticleCount(Long.toString(insideArticle.getArticleTypeId()));
+
             return CommonResult.success(insideArticle);
         }
     }
@@ -148,7 +156,10 @@ public class InsideArticleService {
         if (insideArticle.getId() == null) {
             return CommonResult.paramsError("");
         } else {
+            InsideArticle insideArticle1 = insideArticleMapper.findById(Long.toString(insideArticle.getId()));
+
             insideArticleMapper.deleteOne(insideArticle);
+            articleTypeMapper.minusArticleCount(Long.toString(insideArticle1.getArticleTypeId()));
 
             return CommonResult.success("");
         }

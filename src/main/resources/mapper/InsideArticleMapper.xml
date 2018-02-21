@@ -73,6 +73,12 @@
         FROM inside_article WHERE id = #{id};
     </select>
 
+    <select id="findByArticleTitle" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM inside_article WHERE article_title LIKE concat('%',#{articleTitle},'%')
+        ORDER BY create_time DESC;
+    </select>
+
     <insert id="addOne" parameterType="com.zc.domain.InsideArticle" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO inside_article (article_title, article_author, article_like_count, visit_count, article_content, remark, create_time, article_type_id)
         VALUES (#{articleTitle}, #{articleAuthor}, #{articleLikeCount}, #{visitCount}, #{articleContent}, #{remark}, #{createTime}, #{articleTypeId});

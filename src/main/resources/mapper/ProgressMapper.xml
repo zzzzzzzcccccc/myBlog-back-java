@@ -21,4 +21,23 @@
         SELECT <include refid="Base_Column_List" />
         FROM progress ORDER BY create_time DESC;
     </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM progress WHERE id = #{id};
+    </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.Progress" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO progress (title, img_url, github_href, project_href, remark, content, create_time)
+        VALUES (#{title}, #{imgUrl}, #{githubHref}, #{projectHref}, #{remark}, #{content}, #{createTime});
+    </insert>
+
+    <update id="updateOne">
+        UPDATE progress SET title=#{title}, github_href=#{githubHref}, project_href = #{projectHref}, update_time=NOW()
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.Progress">
+        DELETE FROM progress WHERE id = #{id};
+    </delete>
 </mapper>

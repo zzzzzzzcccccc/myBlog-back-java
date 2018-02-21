@@ -43,6 +43,12 @@
         ORDER BY create_time DESC;
     </select>
 
+    <select id="findByArticleTitle" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM outside_article WHERE article_title LIKE concat('%',#{articleTitle},'%')
+        ORDER BY create_time DESC;
+    </select>
+
     <select id="countAll" resultType="INT">
         SELECT COUNT(*) FROM outside_article <include refid="search" />;
     </select>

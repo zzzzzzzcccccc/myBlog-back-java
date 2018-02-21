@@ -29,4 +29,26 @@
         <include refid="Base_Column_List"></include>
         FROM article_type WHERE id=#{id};
     </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.ArticleType" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO article_type (name, href, label_color, description, article_count, visible, remark, create_time)
+        VALUES (#{name}, #{href}, #{labelColor}, #{description}, #{articleCount}, #{visible}, #{remark}, #{createTime});
+    </insert>
+
+    <update id="updateOne">
+        UPDATE article_type SET name=#{name}, href=#{href}, label_color = #{labelColor}, update_time=NOW()
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.ArticleType">
+        DELETE FROM article_type WHERE id = #{id};
+    </delete>
+
+    <update id="addArticleCount">
+        UPDATE article_type SET article_count=article_count+1, update_time=NOW() WHERE id = #{id};
+    </update>
+
+    <update id="minusArticleCount">
+        UPDATE article_type SET article_count=article_count-1, update_time=NOW() WHERE id = #{id};
+    </update>
 </mapper>

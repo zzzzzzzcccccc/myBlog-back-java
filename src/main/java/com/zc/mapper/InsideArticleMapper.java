@@ -39,6 +39,12 @@ public interface InsideArticleMapper {
     public List<InsideArticle> findByArticleTypeId(@Param("articleTypeId") String articleTypeId);
 
     /*
+    * 根据文章标题模糊查询
+    * @params articleTitle
+    * */
+    public List<InsideArticle> findByArticleTitle(@Param("articleTitle") String articleTitle);
+
+    /*
     * 新增一个内部文章
     * @params insideArticle
     * */

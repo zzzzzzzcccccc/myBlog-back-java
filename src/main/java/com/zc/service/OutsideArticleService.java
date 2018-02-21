@@ -24,6 +24,9 @@ public class OutsideArticleService {
     @Autowired
     private OutsideArticleMapper outsideArticleMapper;
 
+    @Autowired
+    private ArticleTypeMapper articleTypeMapper;
+
     /*
     * 查询所有文章列表
     * @params commonPage
@@ -85,6 +88,8 @@ public class OutsideArticleService {
             outsideArticle.setCreateTime(new Date());
             outsideArticleMapper.addOne(outsideArticle);
 
+            articleTypeMapper.addArticleCount(Long.toString(outsideArticle.getArticleTypeId()));
+
             return CommonResult.success(outsideArticle);
         }
     }
@@ -121,7 +126,10 @@ public class OutsideArticleService {
         if (outsideArticle.getId() == null) {
             return CommonResult.paramsError("");
         } else {
+            OutsideArticle outsideArticle1 = outsideArticleMapper.findById(Long.toString(outsideArticle.getId()));
+
             outsideArticleMapper.deleteOne(outsideArticle);
+            articleTypeMapper.minusArticleCount(Long.toString(outsideArticle1.getArticleTypeId()));
 
             return CommonResult.success("");
         }

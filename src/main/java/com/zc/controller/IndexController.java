@@ -19,6 +19,9 @@ import java.util.Map;
 public class IndexController {
 
     @Autowired
+    private IndexService indexService;
+
+    @Autowired
     private GlobalNavService globalNavService;
 
     @Autowired
@@ -27,11 +30,6 @@ public class IndexController {
     @Autowired
     private GlobalAccessService globalAccessService;
 
-    @Autowired
-    private InsideArticleService insideArticleService;
-
-    @Autowired
-    private OutsideArticleService outsideArticleService;
 
     /*
     * 获取首页所有配置信息
@@ -80,19 +78,16 @@ public class IndexController {
     @GetMapping(value = "/allArticleList")
     public CommonResult findByArticleTypeId(HttpServletRequest request) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
-        String articleTypeId = request.getParameter("articleTypeId");
+        return indexService.findByArticleTypeId(request.getParameter("articleTypeId"));
+    }
 
-        if (articleTypeId == null) {
-            return CommonResult.paramsError("");
-        }
+    /*
+    * 根据文章标题模糊查询
+    * @params articleTitle
+    * */
+    @GetMapping(value = "/findByArticleTitle")
+    public CommonResult findByArticleTitle (HttpServletRequest request) {
 
-        List<OutsideArticle> outsideArticles = outsideArticleService.findByArticleTypeId(articleTypeId);
-        List<InsideArticle> insideArticles = insideArticleService.findByArticleTypeId(articleTypeId);
-
-        map.put("outsideArticles", outsideArticles);
-        map.put("insideArticles", insideArticles);
-
-        return CommonResult.success(map);
+        return indexService.findByArticleTitle(request.getParameter("articleTitle"));
     }
 }
