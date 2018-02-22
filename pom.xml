@@ -5,7 +5,7 @@
 
 	<groupId>com.zc</groupId>
 	<artifactId>zc</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0.myBlogBack</version>
 	<packaging>jar</packaging>
 
 	<name>myBlog</name>
