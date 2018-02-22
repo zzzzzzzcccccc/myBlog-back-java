@@ -2,6 +2,7 @@ package com.zc.service;
 
 import com.zc.domain.Comment;
 import com.zc.mapper.CommentMapper;
+import com.zc.utils.CommonDateTime;
 import com.zc.utils.CommonPage;
 import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,15 @@ public class CommentService {
     * 查询有评论列表
     * @params commonPage
     * @params comment
+    * @params commonDateTime
     * */
-    public CommonResult getCommentList(CommonPage commonPage, Comment comment) {
+    public CommonResult getCommentList(CommonPage commonPage, Comment comment, CommonDateTime commonDateTime) {
 
         Map<String, Object> map = new HashMap<String, Object>();
 
         commonPage.setTotal(commentMapper.countAll(comment));
 
-        List<Comment> comments = commentMapper.findAll(commonPage, comment);
+        List<Comment> comments = commentMapper.findAll(commonPage, comment, commonDateTime);
 
         map.put("page", commonPage);
         map.put("list", comments);

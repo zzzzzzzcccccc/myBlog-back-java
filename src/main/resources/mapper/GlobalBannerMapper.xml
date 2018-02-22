@@ -16,6 +16,25 @@
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List" /> FROM global_banner ORDER BY id ASC;
+        SELECT <include refid="Base_Column_List" /> FROM global_banner ORDER BY create_time DESC;
     </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM global_banner WHERE id = #{id};
+    </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.GlobalBanner" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO global_banner (img_url, title, create_time)
+        VALUES (#{imgUrl}, #{title}, #{createTime});
+    </insert>
+
+    <update id="updateOne">
+        UPDATE global_banner SET img_url=#{imgUrl}, title=#{title}, update_time=NOW()
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.GlobalBanner">
+        DELETE FROM global_banner WHERE id = #{id};
+    </delete>
 </mapper>

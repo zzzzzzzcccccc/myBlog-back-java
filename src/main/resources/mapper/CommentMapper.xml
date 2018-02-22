@@ -18,21 +18,30 @@
 
     <sql id="search">
         <if test="comment.articleId != null and comment.articleId != ''">
-            WHERE article_id = #{comment.articleId}
+            AND article_id = #{comment.articleId}
+        </if>
+        <if test="comment.commentName != null and comment.commentName != ''">
+            AND comment_name LIKE concat('%',#{comment.commentName},'%')
+        </if>
+        <if test="comment.commentEmail != null and comment.commentEmail != ''">
+            AND comment_email = #{comment.commentEmail}
+        </if>
+        <if test="comment.commentContent != null and comment.commentContent != ''">
+            AND comment_content LIKE concat('%',#{comment.commentContent},'%')
         </if>
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"></include>
-        FROM comment
+        FROM comment WHERE 1=1
         <include refid="search"></include>
         ORDER BY create_time DESC
         limit #{commonPage.limitPageNum},#{commonPage.pageSize};
     </select>
 
     <select id="countAll" resultType="INT">
-        SELECT COUNT(*) FROM comment <include refid="search"></include>;
+        SELECT COUNT(*) FROM comment WHERE 1=1 <include refid="search"></include>;
     </select>
 
     <insert id="addOne" parameterType="com.zc.domain.Comment" useGeneratedKeys="true" keyProperty="id">

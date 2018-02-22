@@ -23,4 +23,23 @@
         <include refid="Base_Column_List"></include>
         FROM global_nav ORDER BY id ASC;
     </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM global_nav WHERE id = #{id};
+    </select>
+
+    <insert id="addOne" parameterType="com.zc.domain.GlobalNav" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO global_nav (name, en_name, href, icon_class_name, create_time)
+        VALUES (#{name}, #{enName}, #{href}, #{iconClassName}, #{createTime});
+    </insert>
+
+    <update id="updateOne">
+        UPDATE global_nav SET name=#{name}, en_name=#{enName}, href = #{href}, icon_class_name = #{iconClassName}, update_time=NOW()
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOne" parameterType="com.zc.domain.GlobalNav">
+        DELETE FROM global_nav WHERE id = #{id};
+    </delete>
 </mapper>

@@ -26,7 +26,7 @@
         <include refid="Base_Column_List" />
         FROM global_access
         <include refid="checkSearch" />
-        ORDER BY create_time DESC;
+        ORDER BY create_time ASC;
     </select>
 
     <insert id="addOne" parameterType="com.zc.domain.GlobalAccess" useGeneratedKeys="true" keyProperty="id">

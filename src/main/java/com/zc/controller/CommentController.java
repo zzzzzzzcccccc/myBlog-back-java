@@ -2,15 +2,11 @@ package com.zc.controller;
 
 import com.zc.domain.Comment;
 import com.zc.service.CommentService;
+import com.zc.utils.CommonDateTime;
 import com.zc.utils.CommonPage;
 import com.zc.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/comment")
@@ -23,11 +19,12 @@ public class CommentController {
     * 查询所有评论列表
     * @params commonPage
     * @params comment
+    * @params commonDateTime
     * */
     @GetMapping(value = "/list")
-    public CommonResult getCommentList(CommonPage commonPage, Comment comment) {
+    public CommonResult getCommentList(CommonPage commonPage, Comment comment, CommonDateTime commonDateTime) {
 
-        return commentService.getCommentList(commonPage, comment);
+        return commentService.getCommentList(commonPage, comment, commonDateTime);
     }
 
     /*
