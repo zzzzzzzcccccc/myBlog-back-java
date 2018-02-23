@@ -29,6 +29,9 @@
         <if test="comment.commentContent != null and comment.commentContent != ''">
             AND comment_content LIKE concat('%',#{comment.commentContent},'%')
         </if>
+        <!--<if test="commonDateTime.startTime != null and commonDateTime.startTime != '' and commonDateTime.endTime !=null and commonDateTime.endTime != ''">-->
+            <!--AND create_time BETWEEN #{commonDateTime.startTime} AND #{commonDateTime.endTime}-->
+        <!--</if>-->
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">

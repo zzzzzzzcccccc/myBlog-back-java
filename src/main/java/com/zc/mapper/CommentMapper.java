@@ -20,8 +20,8 @@ public interface CommentMapper {
     * @params commonDateTime
     * */
     public List<Comment> findAll(@Param("commonPage") CommonPage commonPage,
-                                 @Param("comment") Comment comment,
-                                 @Param("commonDateTime") CommonDateTime commonDateTime);
+                                @Param("comment") Comment comment,
+                                @Param("commonDateTime") CommonDateTime commonDateTime);
 
 
     /*

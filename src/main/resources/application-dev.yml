@@ -7,9 +7,9 @@ spring:
       ddl-auto: update
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://zouchenwd.cn/myBlog?characterEncoding=utf-8
-    username: root
-    password: 789456
+    url: jdbc:mysql://127.0.0.1/myBlog?characterEncoding=utf-8
+    username: 你的mysql账号(开发环境)
+    password: 你的mysql密码(开发环境)
 commonConfig:
   commonUploadFilePath: http://localhost:8080/
   uploadPath: /Users/zouchen/work/javaProject/myBlog/src/main/resources/static/
